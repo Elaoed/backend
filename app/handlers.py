@@ -1,8 +1,14 @@
 from tornado import web
 from tornado import gen
 from tornado import escape
+from app.aiomyob import AioMyOB
 
-class PageNotFoundHandler(web.RequestHandler):
+class BasicHandler(web.RequestHandler):
+
+    def error(self):
+        return
+
+class PageNotFoundHandler(BasicHandler):
 
     def get(self):
         respon_json = escape.json_encode(404)
@@ -12,73 +18,42 @@ class PageNotFoundHandler(web.RequestHandler):
         respon_json = escape.json_encode(status_code)
         self.write(respon_json)
 
-
-class IndexHandler(web.RequestHandler):
+class IndexHandler(BasicHandler):
 
     async def get(self):
         return self.render("index.html")
 
-    @gen.coroutine
-    def write_error(self, status_code, **kwargs):
-        respon_json = escape.json_encode(status_code)
-        self.write(respon_json)
-
-class FormHandler(web.RequestHandler):
+class FormHandler(BasicHandler):
     @gen.coroutine
     def get(self):
         return self.render("form.html")
 
-    @gen.coroutine
-    def write_error(self, status_code, **kwargs):
-        respon_json = escape.json_encode(status_code)
-        self.write(respon_json)
-
-class TableHandler(web.RequestHandler):
+class TableHandler(BasicHandler):
     @gen.coroutine
     def get(self):
         return self.render("table.html")
 
-    @gen.coroutine
-    def write_error(self, status_code, **kwargs):
-        respon_json = escape.json_encode(status_code)
-        self.write(respon_json)
-
-class ChartHandler(web.RequestHandler):
+class ChartHandler(BasicHandler):
     @gen.coroutine
     def get(self):
         return self.render("chart.html")
 
-    @gen.coroutine
-    def write_error(self, status_code, **kwargs):
-        respon_json = escape.json_encode(status_code)
-        self.write(respon_json)
-
-class PanelHandler(web.RequestHandler):
+class PanelHandler(BasicHandler):
     @gen.coroutine
     def get(self):
         return self.render("panel.html")
 
-    @gen.coroutine
-    def write_error(self, status_code, **kwargs):
-        respon_json = escape.json_encode(status_code)
-        self.write(respon_json)
-
-class UIHandler(web.RequestHandler):
+class UIHandler(BasicHandler):
     @gen.coroutine
     def get(self):
         return self.render("ui.html")
 
-    @gen.coroutine
-    def write_error(self, status_code, **kwargs):
-        respon_json = escape.json_encode(status_code)
-        self.write(respon_json)
-
-class EmptyHandler(web.RequestHandler):
+class EmptyHandler(BasicHandler):
     @gen.coroutine
     def get(self):
         return self.render("empty.html")
 
-    @gen.coroutine
-    def write_error(self, status_code, **kwargs):
-        respon_json = escape.json_encode(status_code)
-        self.write(respon_json)
+class TestHandler(BasicHandler):
+    async def get(self):
+        res = await AioMyOB.select("SELECT * FROM hello")
+        self.write(res)

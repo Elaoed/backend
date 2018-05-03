@@ -4,7 +4,7 @@ from tornado.options import define
 from tornado.options import options
 from .config import DEV_CONFIG
 from .config import PROD_CONFIG
-from .handlers import IndexHandler, FormHandler, TableHandler
+from .handlers import IndexHandler, FormHandler, TableHandler, TestHandler
 from .handlers import PanelHandler, ChartHandler, UIHandler, EmptyHandler
 from .handlers import PageNotFoundHandler
 from .log import get_logger
@@ -40,6 +40,7 @@ def create_app():
         (r'/chart', ChartHandler),
         (r'/ui', UIHandler),
         (r'/empty', EmptyHandler),
+        (r'/test', TestHandler),
         (r'/(robots\.txt)', web.StaticFileHandler),
         ('.*', PageNotFoundHandler)], **settings)
     return app
