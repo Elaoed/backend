@@ -1,26 +1,21 @@
 from tornado import web
 from tornado import gen
 from tornado import escape
-# from tornado.options import options
-# from tornado.concurrent import run_on_executor
-# from concurrent.futures import ThreadPoolExecutor
-
 
 class PageNotFoundHandler(web.RequestHandler):
-    @gen.coroutine
+
     def get(self):
         respon_json = escape.json_encode(404)
         self.write(respon_json)
 
-    @gen.coroutine
     def write_error(self, status_code, **kwargs):
         respon_json = escape.json_encode(status_code)
         self.write(respon_json)
 
 
 class IndexHandler(web.RequestHandler):
-    @gen.coroutine
-    def get(self):
+
+    async def get(self):
         return self.render("index.html")
 
     @gen.coroutine

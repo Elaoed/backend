@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 aiohttp = "*"
 tornado = "*"
+uvloop = "*"
+aiomysql = "*"
 
 [dev-packages]
 
