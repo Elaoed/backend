@@ -1,7 +1,7 @@
 from tornado import web
-from tornado import gen
 from tornado import escape
-from app.aiomyob import AioMyOB
+# from app.aiomyob import AioMyOB
+from .mysqlob import MySqlOB
 
 class BasicHandler(web.RequestHandler):
 
@@ -20,40 +20,42 @@ class PageNotFoundHandler(BasicHandler):
 
 class IndexHandler(BasicHandler):
 
-    async def get(self):
+    def get(self):
         return self.render("index.html")
 
 class FormHandler(BasicHandler):
-    @gen.coroutine
     def get(self):
         return self.render("form.html")
 
 class TableHandler(BasicHandler):
-    @gen.coroutine
     def get(self):
         return self.render("table.html")
 
 class ChartHandler(BasicHandler):
-    @gen.coroutine
     def get(self):
         return self.render("chart.html")
 
 class PanelHandler(BasicHandler):
-    @gen.coroutine
     def get(self):
         return self.render("panel.html")
 
 class UIHandler(BasicHandler):
-    @gen.coroutine
     def get(self):
         return self.render("ui.html")
 
 class EmptyHandler(BasicHandler):
-    @gen.coroutine
     def get(self):
         return self.render("empty.html")
 
 class TestHandler(BasicHandler):
     async def get(self):
-        res = await AioMyOB.select("SELECT * FROM hello")
+        # res = await AioMyOB.select("SELECT * FROM hello")
+        res = None
         self.write(res)
+
+class OrderHandler(BasicHandler):
+    def get(self):
+        sql = "SELECT * FROM orders"
+        mdb = MySqlOB()
+        data = mdb.select(sql, one=False)
+        return self.render("orders.html", data=data)
