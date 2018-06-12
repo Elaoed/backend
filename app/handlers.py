@@ -14,7 +14,7 @@ class BasicHandler(web.RequestHandler):
         dmap = {
             None: "",
         }
-        return dmap(value)
+        return dmap[value]
 
     def error(self):
         return
