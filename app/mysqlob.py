@@ -71,7 +71,7 @@ class MySqlOB(object):
     def get_connection(self):
         return self.__POOL.connection()
 
-    def insert(self, sql, params):
+    def insert(self, sql, params=None):
         params = params or []
         conn = self.get_connection()
         cursor = conn.cursor()
@@ -84,10 +84,10 @@ class MySqlOB(object):
         cursor.close()
         conn.close()
 
-    def update(self, sql, params):
+    def update(self, sql, params=None):
         self.insert(sql, params)
 
-    def select(self, sql, params, one=True):
+    def select(self, sql, params=None, one=True):
         params = params or []
         conn = self.get_connection()
         cursor = conn.cursor()
@@ -100,10 +100,11 @@ class MySqlOB(object):
         conn.close()
         return obj
 
-    def delete(self, sql, params):
+    def delete(self, sql, params=None):
         self.insert(sql, params)
 
-    def exec_iu_conn(self, commands, conn, params):
+    def exec_iu_conn(self, commands, conn, params=None):
+        params = params or []
         cursor = conn.cursor()
         try:
             cursor.execute(commands, params)
@@ -112,7 +113,8 @@ class MySqlOB(object):
             raise err
             conn.rollback()
 
-    def exec_query_conn(self, commands, conn, params, one=True):
+    def exec_query_conn(self, commands, conn, params=None, one=True):
+        params = params or []
         cursor = conn.cursor()
         cursor.execute(commands, params)
         if one:
