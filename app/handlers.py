@@ -8,7 +8,7 @@ class BasicHandler(web.RequestHandler):
     def format(self, key, value):
 
         if key == 'is_test':
-            return '是' if value == "1" else '否'
+            return '测试订单' if value == 1 else '正式订单'
         if key == 'paySuccess':
             return '支付成功' if value == 0 else '支付失败'
         dmap = {
