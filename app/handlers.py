@@ -5,6 +5,17 @@ from .mysqlob import MySqlOB
 
 class BasicHandler(web.RequestHandler):
 
+    def format(self, key, value):
+
+        if key == 'is_test':
+            return '是' if value == "1" else '否'
+        if key == 'paySuccess':
+            return '支付成功' if value == 0 else '支付失败'
+        dmap = {
+            None: "",
+        }
+        return dmap(value)
+
     def error(self):
         return
 
@@ -58,4 +69,5 @@ class OrderHandler(BasicHandler):
         sql = "SELECT * FROM orders"
         mdb = MySqlOB()
         data = mdb.select(sql, one=False)
+        data = [{k: self.format(k, v) for k, v in x} for x in data]
         return self.render("orders.html", data=data)
