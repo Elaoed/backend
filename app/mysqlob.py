@@ -6,46 +6,46 @@ import pymysql as mysql
 # import MySQLdb as mysql
 # from MySQLdb.cursors import DictCursor
 from pymysql.cursors import DictCursor
-from config.mysql_config import DB_HOST
-from config.mysql_config import DB_PORT
-from config.mysql_config import DB_USER
-from config.mysql_config import DB_DBNAME
-from config.mysql_config import DB_PASSWORD
-from config.mysql_config import DB_CHARSET
-from config.mysql_config import DB_AUTO_COMMIT
-from config.mysql_config import DB_MAX_SHARED
-from config.mysql_config import DB_MAX_CONNECYIONS
-from config.mysql_config import DB_BLOCKING
-from config.mysql_config import DB_MAX_USAGE
+# from config.mysql_config import DB_HOST
+# from config.mysql_config import DB_PORT
+# from config.mysql_config import DB_USER
+# from config.mysql_config import DB_DBNAME
+# from config.mysql_config import DB_PASSWORD
+# from config.mysql_config import DB_CHARSET
+# from config.mysql_config import DB_AUTO_COMMIT
+# from config.mysql_config import DB_MAX_SHARED
+# from config.mysql_config import DB_MAX_CONNECYIONS
+# from config.mysql_config import DB_BLOCKING
+# from config.mysql_config import DB_MAX_USAGE
 
 
 class MySqlOB(object):
-    def __init__(self, host=None, port=None, user=None, passwd=None, db=None, charset=None,
-                 autocommit=None, maxshared=None, maxconnections=None, blocking=None, maxusage=None,
-                 cursorclass=DictCursor):
+    def __init__(self, host=None, port=None, user=None, passwd=None, db=None, cursorclass=DictCursor):
 
-        if host is None:
-            host = DB_HOST
-        if port is None:
-            port = DB_PORT
-        if user is None:
-            user = DB_USER
-        if passwd is None:
-            passwd = DB_PASSWORD
-        if db is None:
-            db = DB_DBNAME
-        if charset is None:
-            charset = DB_CHARSET
-        if autocommit is None:
-            autocommit = DB_AUTO_COMMIT
-        if maxshared is None:
-            maxshared = DB_MAX_SHARED
-        if maxconnections is None:
-            maxconnections = DB_MAX_CONNECYIONS
-        if blocking is None:
-            blocking = DB_BLOCKING
-        if maxusage is None:
-            maxusage = DB_MAX_USAGE
+        # charset=None, autocommit=None, maxshared=None, maxconnections=None, blocking=None, maxusage=None,
+
+        # if host is None:
+        #     host = DB_HOST
+        # if port is None:
+        #     port = DB_PORT
+        # if user is None:
+        #     user = DB_USER
+        # if passwd is None:
+        #     passwd = DB_PASSWORD
+        # if db is None:
+        #     db = DB_DBNAME
+        # if charset is None:
+        #     charset = DB_CHARSET
+        # if autocommit is None:
+        #     autocommit = DB_AUTO_COMMIT
+        # if maxshared is None:
+        #     maxshared = DB_MAX_SHARED
+        # if maxconnections is None:
+        #     maxconnections = DB_MAX_CONNECYIONS
+        # if blocking is None:
+        #     blocking = DB_BLOCKING
+        # if maxusage is None:
+        #     maxusage = DB_MAX_USAGE
 
         self.__POOL = PooledDB(
             mysql,
@@ -54,13 +54,13 @@ class MySqlOB(object):
             passwd=passwd,
             db=db,
             port=port,
-            charset=charset,
+            # charset=charset,
             cursorclass=cursorclass,
-            autocommit=autocommit,
-            maxshared=maxshared,
-            maxconnections=maxconnections,
-            blocking=blocking,
-            maxusage=maxusage
+            # autocommit=autocommit,
+            # maxshared=maxshared,
+            # maxconnections=maxconnections,
+            # blocking=blocking,
+            # maxusage=maxusage
         )
 
     def get_connection(self):
