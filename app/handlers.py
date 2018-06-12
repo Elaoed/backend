@@ -14,7 +14,7 @@ class BasicHandler(web.RequestHandler):
         dmap = {
             None: "",
         }
-        return dmap[value]
+        return dmap.get(value, value)
 
     def error(self):
         return
@@ -69,5 +69,5 @@ class OrderHandler(BasicHandler):
         sql = "SELECT * FROM orders"
         mdb = MySqlOB()
         data = mdb.select(sql, one=False)
-        data = [{k: self.format(k, v) for k, v in x} for x in data]
+        data = [{k: self.format(k, v) for k, v in x.items()} for x in data]
         return self.render("orders.html", data=data)

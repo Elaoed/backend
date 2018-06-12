@@ -1,4 +1,15 @@
-﻿{% extends "base.html" %} {% block content %}
+﻿{% extends "base.html" %}
+{% block css %}
+thead{
+    word-wrap: break-word;
+    white-space: pre;
+}
+td{
+    word-wrap: break-word;
+    white-space: pre;
+}
+{% end %}
+{% block content %}
 <div id="page-wrapper">
     <div class="header">
         <h1 class="page-header">
