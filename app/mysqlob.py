@@ -67,6 +67,7 @@ class MySqlOB(object):
         return self.__POOL.connection()
 
     def insert(self, sql, params):
+        params = params or []
         conn = self.get_connection()
         cursor = conn.cursor()
         try:
@@ -82,6 +83,7 @@ class MySqlOB(object):
         self.insert(sql, params)
 
     def select(self, sql, params, one=True):
+        params = params or []
         conn = self.get_connection()
         cursor = conn.cursor()
         cursor.execute(sql, params)
