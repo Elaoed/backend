@@ -1,13 +1,15 @@
 ﻿{% extends "base.html" %}
 {% block css %}
-thead{
+<style>
+table thead{
     word-wrap: break-word;
     white-space: pre;
 }
-td{
+table td{
     word-wrap: break-word;
     white-space: pre;
 }
+</style>
 {% end %}
 {% block content %}
 <div id="page-wrapper">
@@ -68,7 +70,7 @@ td{
                                         <td>{{row['paySuccess']}}</td>
                                         <td>{{row['is_test']}}</td>
                                         <td>{{row['serverId']}}</td>
-                                        <td>{{row['serverName']}}</td>
+                                        <td>{{row['serverId']}}</td>
                                         <!-- <td class="center">4</td> -->
                                     </tr>
 
