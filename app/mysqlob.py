@@ -24,6 +24,11 @@ class MySqlOB(object):
 
         # charset=None, autocommit=None, maxshared=None, maxconnections=None, blocking=None, maxusage=None,
 
+        host = host or '127.0.0.1'
+        port = port or 3306
+        user = user or 'hjc'
+        passwd = passwd or '123123'
+        db = db or 'mhzx_4095'
         # if host is None:
         #     host = DB_HOST
         # if port is None:
