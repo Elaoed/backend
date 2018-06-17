@@ -17,7 +17,7 @@ def sysfunc(func, params, port="18608"):
 def get_role_id(role_name, port="18608"):
 
     res = sysfunc("getRoleidByName", ["java.lang.String", role_name], port)
-    res = re.match('retvalue=(\d+)', res.decode("utf-8"))
+    res = re.search('retvalue=(-?\d+)', res.decode("utf-8"))
     role_id = res.group(1)
     print(role_id)
 
