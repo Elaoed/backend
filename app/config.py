@@ -27,4 +27,14 @@ class Config:
         # 'minsize': 1,
         'cursorclass': DictCursor
     }
+    server_ip = "111.6.78.66"
+    port = "9090"
+    path = "/efun/order_callback"
+    charge_url = f"http://{server_ip}:{port}{path}"
+
     jmx_path = "/www/wwwroot/111.6.78.66/mhzxBackend/JMXTool.jar"
+
+    servers = {
+        4095: "青龙",
+        4093: "白虎",
+    }
