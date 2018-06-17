@@ -19,19 +19,13 @@ def get_role_id(role_name, port="18608"):
     res = sysfunc("getRoleidByName", ["java.lang.String", role_name], port)
     res = re.search('retvalue=(-?\d+)', res.decode("utf-8"))
     role_id = res.group(1)
-    print(role_id)
-
-    print(res)
+    return role_id
 
 def charge(role_name, server_id, amount=68, productId="tw.zx.1usd"):
     role_id = get_role_id(role_name)
-    print(role_id)
-    exit()
-    if role_id is None:
-        return jd({'code': 1, 'msg': "role_id is None"})
 
-    if server_id is None:
-        return jd({'code': 1, 'msg': "server_id is None"})
+    if role_id is -1:
+        return jd({'code': 1, 'msg': "Coudn't find role"})
 
     now = int(time.time())
     sd_ts = "SD" + str(now)
