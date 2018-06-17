@@ -216,7 +216,7 @@
 			}
 			else{
 			    $(this).addClass('closed');
-				$('.navbar-side').animate({left: '-260px'});
+				$('.navbar-side').animate({left: '-160px'});
 				$('#page-wrapper').animate({'margin-left' : '0px'});
 			}
 		});

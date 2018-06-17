@@ -27,3 +27,4 @@ class Config:
         # 'minsize': 1,
         'cursorclass': DictCursor
     }
+    jmx_path = "/www/wwwroot/111.6.78.66/mhzxBackend/JMXTool.jar"

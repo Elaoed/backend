@@ -2,6 +2,7 @@ from tornado import web
 from tornado import escape
 # from app.aiomyob import AioMyOB
 from .mysqlob import MySqlOB
+import subprocess
 
 class BasicHandler(web.RequestHandler):
 
@@ -57,6 +58,24 @@ class UIHandler(BasicHandler):
 class EmptyHandler(BasicHandler):
     def get(self):
         return self.render("empty.html")
+
+class AnnounceHandler(BasicHandler):
+    def get(self):
+        return self.render("announce.html")
+
+    def post(self):
+
+        jmx_path = "/www/wwwroot/111.6.78.66/mhzxBackend/JMXTool.jar"
+        content = self.get_argument("content")
+        s = subprocess.check_output(["java", "-cp", jmx_path,
+                                     "com.wanmei.mhzx.InvokeMethod", "127.0.0.1", "18608", "controlRole",
+                                     "kym", "IWEB:type=GameControl", "sendNotice", "java.lang.String",
+                                     content])
+        # s = [x for x in s.decode('utf-8').split('\n') if x]
+        # s = s[-1].split(' ')[-1].split("=")[-1]
+        # return s
+        return self.write({'code': 0, 'msg': "success"})
+
 
 class TestHandler(BasicHandler):
     async def get(self):

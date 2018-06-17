@@ -6,7 +6,7 @@ from .config import DEV_CONFIG
 from .config import PROD_CONFIG
 from .handlers import IndexHandler, FormHandler, TableHandler, TestHandler
 from .handlers import PanelHandler, ChartHandler, UIHandler, EmptyHandler
-from .handlers import PageNotFoundHandler, OrderHandler
+from .handlers import PageNotFoundHandler, OrderHandler, AnnounceHandler
 from .log import get_logger
 
 def create_app():
@@ -36,6 +36,7 @@ def create_app():
         (r'/', IndexHandler),
         (r'/form', FormHandler),
         (r'/orders', OrderHandler),
+        (r'/announce', AnnounceHandler),
         (r'/table', TableHandler),
         (r'/panel', PanelHandler),
         (r'/chart', ChartHandler),

@@ -8,6 +8,7 @@ aiohttp = "*"
 tornado = "*"
 uvloop = "*"
 aiomysql = "*"
+dbutils = "*"
 
 [dev-packages]
 
