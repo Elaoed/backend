@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 import time
 import json
 import subprocess
@@ -16,6 +17,10 @@ def sysfunc(func, params, port="18608"):
 def get_role_id(role_name, port="18608"):
 
     res = sysfunc("getRoleidByName", ["java.lang.String", role_name], port)
+    res = re.match('retvalue=(\d+)', res.decode("utf-8"))
+    role_id = res.group(1)
+    print(role_id)
+
     print(res)
 
 def charge(role_name, server_id, amount=68, productId="tw.zx.1usd"):
